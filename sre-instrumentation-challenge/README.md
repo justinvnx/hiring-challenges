@@ -6,9 +6,9 @@
 
 - Python code for the storage_api has been modified to include prometheus instrumentation as described. The relevant endpoints to access in the deployment are:
 
- - localhost:5000/metrics **Storage API Metrics endpoint**
- - localhost:9090/targets **Prometheus scrape target**
- - localhost:3000 **Grafana login**
+    - localhost:5000/metrics **Storage API Metrics endpoint**
+    - localhost:9090/targets **Prometheus scrape target**
+    - localhost:3000 **Grafana login**
 
 ### Step 1: Implementation
 
