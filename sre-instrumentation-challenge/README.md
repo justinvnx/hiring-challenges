@@ -37,10 +37,4 @@ All Kubernetes Yaml files in ./deploy/kubernetes.
 
 ## Evaluation criteria
 
-What we're looking for:
-
-- We expect the resulting Storage API to be equally simple. Even if you don't know Python, the Flask and Prometheus documentation should provide enough guidance
-- The Dockerfile and your changes to docker-compose.yml are sensible and concise. You can talk about the pros and cons of your setup in relation to convenience vs security.
-- It works reliably. `docker-compose up` and your documentation should be all that is required to review your solution
-- Scratch features when necessary, time is short!
-- Document your approach, your decisions, and your general notes
+Looking forward to discussing the solution!
