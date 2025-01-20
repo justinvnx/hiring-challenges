@@ -14,7 +14,7 @@ services:
       - prometheus_data:/prometheus
     networks:
       - monitoring
-    restart: unless-stopped
+    restart: unless-stopped # Ensures container will self recover by restarting unless manually stopped
 
   grafana:
     image: grafana/grafana-oss:8.3.4
@@ -31,20 +31,20 @@ services:
       - prometheus
     networks:
       - monitoring
-    restart: unless-stopped
+    restart: unless-stopped # Ensures container will self recover by restrating unless manually stopped
 
   storage_api:
     build:
-      context: .  # Directory containing the Dockerfile and app code
+      context: .  # Directory containing the Dockerfile. Make sure to run DOCKER COMPOSE UP from here
     container_name: storage_api
     environment:
-      - FLASK_APP=storage_api  # Replace with your app's entry point if different
-      - FLASK_ENV=production   # Optional: Use development if debugging
+      - FLASK_APP=storage_api
+      - FLASK_ENV=production
     ports:
       - 5000:5000  # Expose the Flask app to the host
     networks:
       - monitoring
-    restart: unless-stopped
+    restart: unless-stopped # Ensures container will self recover by restrating unless manually stopped
 
 networks:
   monitoring:

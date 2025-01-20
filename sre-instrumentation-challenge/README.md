@@ -1,44 +1,39 @@
 # SRE Instrumentation Challenge
 
-Your goal is to add Prometheus instrumentation to our in-memory Storage API which is written in Python (see `src/README.md` for more details).
+- To run the application, run 'docker compose up' from the 'sre-implementation-challenge' folder. This is where the dockerfile and docker-compose.yml are located
+- Generate some test traffic by opening a new terminal and running ./scripts/generate_traffic.sh
+- To deploy onto kubernetes, navigate to the ./deploy/kubernetes folder and run 'kubectl apply -f .'
 
-**Please invest no more than 5 to 8 hours.** If you cannot complete the task in this time frame, document where you got stuck so we can use this as a basis for discussion for your next interview.
+- Python code for the storage_api has been modified to include prometheus instrumentation as described. The relevant endpoints to access in the deployment are:
 
-## Your mission, should you choose to accept it:
+localhost:5000/metrics **Storage API Metrics endpoint**
+localhost:9090/targets **Prometheus scrape target**
+localhost:3000 **Grafana login**
 
 ### Step 1: Implementation
 
-- Add the Prometheus metrics endpoint to the Storage API
+- Add the Prometheus metrics endpoint to the Storage API 
+    - Done. '__init__.py' line 13-16
 - Expose HTTP request duration in seconds by path, method and status code
+    - Done. bucket.py line 20 - 43. It is in the form of a decorator that wraps the route functions to avoid duplication wihin each route.
 - Create a Dockerfile for the Storage API. The Prometheus Server expects it to run on `http://storage_api:5000`.
+    - Done.
 - Add the newly dockerized Storage API to our docker-compose setup
+    - Done.
 
 ### Step 2: Visualization
 
-1. Run `docker-compose up`
-2. Create a new Grafana dashboard here: http://localhost:3000
-3. The dashboard should contain two graphs for our Storage API:
-
-- Average HTTP Request Duration
-- HTTP Status Codes
-
-It should look something like this:
+Prometheus Datasource and Grafana dashboard is automatically provisioned when application is deployed. It looks like this:
 
 ![docs/grafana-dashboard.png](docs/grafana-dashboard.png)
 
-Tip: Run `scripts/generate_traffic.sh` to generate some traffic to the Storage API . The script expects the Storage API to run on http://localhost:5000.
-
 4. Try to figure out why you see HTTP 500 errors for some endpoints
+
+    -  It generates a 500 on successful DELETE method. It should be 200. I left as is for illustrative purposes.
 
 ### Step 3: Deployment
 
-In the last step we want to run the setup we have from our `docker-compose.yml` file on Kubernetes. Please create the Kubernetes resources for
-
-- Storage API application
-- Prometheus
-- Grafana
-
-How you create or generate the resource files (YAML files) is up to you. Depending on the time left, it is fine to take shortcuts or only creating the resource files without actually applying them to a Kubernetes cluster. Also don't invest much time into the volume setup.
+All Kubernetes Yaml files in ./deploy/kubernetes.
 
 ## Evaluation criteria
 

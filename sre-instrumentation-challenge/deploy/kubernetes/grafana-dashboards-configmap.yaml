@@ -87,7 +87,7 @@ data:
                     }
                   ]
                 },
-                "unit": "µs"
+                "unit": "none"
               },
               "overrides": []
             },
@@ -219,7 +219,7 @@ data:
           "list": []
         },
         "time": {
-          "from": "now-15m",
+          "from": "now-5m",
           "to": "now"
         },
         "timepicker": {},

@@ -22,8 +22,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends make && \
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requires.txt
 
-# Expose the app's port
-EXPOSE 5000
-
-# Use Makefile to run the app
+# Use Makefile to run the app to use existing methods
 CMD ["make", "run"]
