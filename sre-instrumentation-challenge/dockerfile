@@ -1,0 +1,29 @@
+# Use a lightweight base image
+FROM python:3.10-slim
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the relevant project files into the container
+COPY /src/storage/storage.egg-info/requires.txt /app/requires.txt
+COPY /src/Makefile /app/
+COPY /src/run.py /app/
+COPY /src/storage/ /app/storage/
+
+# Install system dependencies, including make
+RUN apt-get update && apt-get install -y --no-install-recommends make && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requires.txt
+
+# Expose the app's port
+EXPOSE 5000
+
+# Use Makefile to run the app
+CMD ["make", "run"]

@@ -1,4 +1,4 @@
-version: '3.7'
+# version: '3.8'  # Updated version for compatibility and features
 
 volumes:
   grafana_data: {}
@@ -12,6 +12,9 @@ services:
     volumes:
       - ./deploy/prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
+    networks:
+      - monitoring
+    restart: unless-stopped
 
   grafana:
     image: grafana/grafana-oss:8.3.4
@@ -26,4 +29,23 @@ services:
       - ./deploy/grafana/provisioning/:/etc/grafana/provisioning/
     depends_on:
       - prometheus
+    networks:
+      - monitoring
+    restart: unless-stopped
 
+  storage_api:
+    build:
+      context: .  # Directory containing the Dockerfile and app code
+    container_name: storage_api
+    environment:
+      - FLASK_APP=storage_api  # Replace with your app's entry point if different
+      - FLASK_ENV=production   # Optional: Use development if debugging
+    ports:
+      - 5000:5000  # Expose the Flask app to the host
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+networks:
+  monitoring:
+    driver: bridge

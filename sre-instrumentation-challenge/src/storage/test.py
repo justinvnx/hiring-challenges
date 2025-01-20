@@ -11,7 +11,7 @@ def test_get_bucket_not_found():
     assert response.status_code == 404
 
     payload = json.loads(response.data)
-    assert payload["error"] == "not found"
+    assert payload["error"] == "wtf bro"
 
 
 @patch("storage.bucket.data", {"1": "hello"})

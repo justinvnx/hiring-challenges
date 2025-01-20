@@ -13,7 +13,7 @@ lint:
 	mypy storage/
 
 test:
-	pytest storage/test.py
+	pytest -v storage/test.py
 
 run:
 	python3 run.py
