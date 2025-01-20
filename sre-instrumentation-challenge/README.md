@@ -13,13 +13,13 @@
 ### Step 1: Implementation
 
 - Add the Prometheus metrics endpoint to the Storage API 
-    - Done. '__init__.py' line 13-16
+    - **Done.** '__init__.py' line 13-16
 - Expose HTTP request duration in seconds by path, method and status code
-    - Done. bucket.py line 20 - 43. It is in the form of a decorator that wraps the route functions to avoid duplication wihin each route.
+    - **Done.**  bucket.py line 20 - 43. It is in the form of a decorator that wraps the route functions to avoid duplication wihin each route.
 - Create a Dockerfile for the Storage API. The Prometheus Server expects it to run on `http://storage_api:5000`.
-    - Done.
+    - **Done.** 
 - Add the newly dockerized Storage API to our docker-compose setup
-    - Done.
+    - **Done.** 
 
 ### Step 2: Visualization
 
