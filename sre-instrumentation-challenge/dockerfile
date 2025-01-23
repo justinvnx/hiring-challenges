@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # Copy the relevant project files into the container
-COPY /src/storage/storage.egg-info/requires.txt /app/requires.txt
+COPY /src/requires.txt /app/requires.txt
 COPY /src/Makefile /app/
 COPY /src/run.py /app/
 COPY /src/storage/ /app/storage/
