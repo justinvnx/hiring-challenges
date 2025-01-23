@@ -1,5 +1,6 @@
 .idea
 .vscode
+.DS_Store
 
 ### VisualStudioCode template
 .vscode/*
@@ -118,9 +119,9 @@ sdist/
 var/
 wheels/
 share/python-wheels/
-*.egg-info/
+# *.egg-info/
 .installed.cfg
-*.egg
+# *.egg
 MANIFEST
 
 # PyInstaller
